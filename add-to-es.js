@@ -10,15 +10,17 @@ var d = new Date();
 var dateStr = d.toISOString().slice(0,10);
 
 var intVars = { battery: '%BATT', cell_signal_strength: '%CELLSIG',
-                                      display_brightness: '%BRIGHT', light_level: '%LIGHT',
-                                        uptime: '%UPS', free_memory: '%MEMF', pedometer: '%STEPSTAKEN'
-                                    };
+                display_brightness: '%BRIGHT', light_level: '%LIGHT',
+                uptime: '%UPS', free_memory: '%MEMF', pedometer: '%STEPSTAKEN'
+              };
 var doubleVars = { altitude: '%LOCALT', magnetic_strength: '%MFIELD', temperature: '%TEMP' };
 var booleanVars = { bluetooth_on: '%BLUE', locked: '%KEYG', muted: '%MUTED', speakerphone: '%SPHONE',
-                                      wifi_enabled: '%WIFI', wimax_enabled: '%WIMAX', screen_on: '%SCREEN', roaming: '%ROAM',
-airplane_mode: '%AIR'
-                                    };
-var keywordVars = { bluetooth_on: '%BLUE', cell_network: '%TNET', device: '%DEVID', device_id: '%DEVTID' };
+                    wifi_enabled: '%WIFI', wimax_enabled: '%WIMAX', screen_on: '%SCREEN', roaming: '%ROAM',
+                    airplane_mode: '%AIR'
+                  };
+var keywordVars = { cell_network: '%TNET', device: '%DEVID', device_id: '%DEVTID' };
+var textVars = { calendar_event_description: '%CALDESCR', calendar_event_title: '%CALTITLE',
+                 calendar_event_location: '%CALTITLE' };
 
 postData = { timestamp: d.toISOString() };
 template = { timestamp: { type: 'date' } };
@@ -95,6 +97,7 @@ indexType = 'doc';
 setLocal('%jsondocbulkheader', JSON.stringify({ "_index": indexName, "_type": indexType}));
 setLocal('%jsondocstring',jsondocstring);
 
+/*
 var xhrTemplate = new XMLHttpRequest();
 xhrTemplate.open("PUT", esServer + "_template/" + indexPrefix, false);
 xhrTemplate.setRequestHeader("Content-type", "application/json");
@@ -102,18 +105,22 @@ if (typeof(par[1]) !== 'undefined') {
     xhrTemplate.setRequestHeader("Authorization", "Basic " + btoa(par[1]));
 }
 var templateString = JSON.stringify({ template: indexPrefix + '-*', mappings: { doc: { properties: template } } });
+*/
 
+/*
 try {
 xhrTemplate.send(templateString);
 } catch (e) { }
+*/
 try {
-var xhrDoc = new XMLHttpRequest();
-xhrDoc.open("POST", esServer + indexName + '/' + indexType, false);
-xhrDoc.setRequestHeader("Content-type", "application/json");
-if (typeof(par[1]) !== 'undefined') {    xhrDoc.setRequestHeader("Authorization", "Basic " + btoa(par[1]));
-}
+  var xhrDoc = new XMLHttpRequest();
+  xhrDoc.open("POST", esServer + indexName + '/' + indexType, false);
+  xhrDoc.setRequestHeader("Content-type", "application/json");
+  if (typeof(par[1]) !== 'undefined') {
+    xhrDoc.setRequestHeader("Authorization", "Basic " + btoa(par[1]));
+  }
 
-xhrDoc.send(jsondocstring);
-setLocal('%sentdoc','1');
+  xhrDoc.send(jsondocstring);
+  setLocal('%sentdoc','1');
 } catch (e) { }
 exit();
