@@ -1,0 +1,128 @@
+{
+  "index_patterns": [
+      "tasker-*"
+  ],
+  "settings" : {
+    "index" : {
+      "number_of_shards" : "1",
+      "sort": {
+        "field": ["device_id", "timestamp"],
+        "order": ["asc", "asc"]
+      }
+    }
+  },
+  "mappings" : {
+    "doc" : {
+      "properties" : {
+        "battery" : {
+          "type" : "short"
+        },
+        "cell_signal_strength" : {
+          "type" : "long"
+        },
+        "display_brightness" : {
+          "type" : "long"
+        },
+        "light_level" : {
+          "type" : "long"
+        },
+        "uptime" : {
+          "type" : "long"
+        },
+        "free_memory" : {
+          "type" : "long"
+        },
+        "pedometer" : {
+          "type" : "long"
+        },
+        "altitude" : {
+          "type" : "double"
+        },
+        "magnetic_strength" : {
+          "type" : "double"
+        },
+        "temperature" : {
+          "type" : "double"
+        },
+        "bluetooth_on" : {
+          "type" : "boolean"
+        },
+        "locked" : {
+          "type" : "boolean"
+        },
+        "muted" : {
+          "type" : "boolean"
+        },
+        "speakerphone" : {
+          "type" : "boolean"
+        },
+        "wifi_enabled" : {
+          "type" : "boolean"
+        },
+        "wimax_enabled" : {
+          "type" : "boolean"
+        },
+        "screen_on" : {
+          "type" : "boolean"
+        },
+        "airplane_mode" : {
+          "type" : "boolean"
+        },
+        "music_playing" : {
+          "type" : "boolean"
+        },
+        "roaming" : {
+          "type" : "boolean"
+        },
+        "cell_network" : {
+          "type" : "keyword"
+        },
+        "device" : {
+          "type" : "keyword"
+        },
+        "device_id" : {
+          "type" : "keyword"
+        },
+        "wifi_name" : {
+          "type" : "keyword"
+        },
+        "timestamp" : {
+          "type" : "date"
+        },
+        "geo_point" : {
+          "type" : "date"
+        },
+        "song" : {
+          "type" : "text"
+        },
+        "calendar_event_description" : {
+          "type" : "text"
+        },
+        "calendar_event_title" : {
+          "type" : "text"
+        },
+        "calendar_event_location" : {
+          "type" : "text"
+        },
+        "location" : {
+          "type" : "geo_point"
+        },
+        "day_path" : {
+          "type" : "geo_shape"
+        },
+        "day_steps_taken" : {
+          "type" : "long"
+        },
+        "day_distance_traveled_meters" : {
+          "type" : "double"
+        },
+        "distance_traveled_on_foot_meters" : {
+          "type" : "double"
+        },
+        "phone_screen_on_percentage" : {
+          "type" : "double"
+        }
+      }
+    }
+  }
+}
