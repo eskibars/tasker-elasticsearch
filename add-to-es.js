@@ -94,7 +94,7 @@ if (typeof(wifii) !== 'undefined' && res !== '') {
 var jsondocstring = JSON.stringify(postData);
 var indexName = indexPrefix + '-' + dateStr;
 indexType = 'doc';
-setLocal('%jsondocbulkheader', JSON.stringify({ "_index": indexName, "_type": indexType}));
+setLocal('%jsondocbulkheader', JSON.stringify({"index": { "_index": indexName, "_type": indexType}}));
 setLocal('%jsondocstring',jsondocstring);
 
 /*
